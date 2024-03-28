@@ -1,0 +1,33 @@
+main {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra horizontalmente */
+  height: 100%; /* Opcional: ajusta la altura al 100% del contenedor padre */
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+
+  h2 {
+    font-size: 30px;
+  }
+
+  mat-icon {
+    font-size: 40px;
+    color: yellow;
+  }
+
+  button {
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-left: 5px;
+  }
+  #yes {
+    background-color: #b56565;
+  }
+  #no {
+    background-color: #3b6cb1;
+  }
+}

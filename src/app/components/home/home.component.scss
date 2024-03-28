@@ -1,0 +1,107 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  height: 100vh;
+  background: none;
+  width: 80%; /* Adjust this value for desired content width */
+  margin: 0 auto; /* Center content horizontally */
+}
+
+/* Tabla */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden; /* Oculta los bordes superpuestos */
+  background: none;
+}
+
+#encabezado {
+  margin-top: 5%;
+  width: 100%;
+  background-color: #4d4d4e;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Alinea los elementos a los extremos */
+
+  #buttonContainer {
+    padding: 20px;
+  }
+
+  #tittleContainer {
+    h1 {
+      font-size: 30px;
+      color: #fff;
+    }
+  }
+}
+
+/* Encabezados de la tabla */
+th {
+  background-color: #4d4d4e; /* Fondo oscuro */
+  color: #c9d1d9; /* Texto claro */
+  font-size: 20px;
+  position: sticky;
+}
+
+/* Filas alternas de la tabla */
+tr:nth-child(even) {
+  background-color: #252e3b; /* Fondo oscuro */
+}
+
+/* Filas impares de la tabla */
+tr:nth-child(odd) {
+  background-color: #161b22; /* Fondo ligeramente más claro */
+}
+
+tr:nth-child(even):hover,
+tr:nth-child(odd):hover {
+  background-color: #616367;
+  color: #000;
+}
+
+/* Color de texto para todas las celdas */
+td {
+  color: #c9d1d9; /* Texto claro */
+}
+
+/* Estilo para la última fila */
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+#deleteAlumno,
+#editAlumno,
+#addAlumno,
+#editCurso {
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  margin: 10px;
+}
+
+#deleteAlumno {
+  background-color: #b56565;
+}
+
+#editAlumno {
+  background-color: #3b6cb1;
+}
+
+#addAlumno {
+  background-color: #5fc47a;
+}
+
+#editCurso {
+  background-color: #c1822f;
+}

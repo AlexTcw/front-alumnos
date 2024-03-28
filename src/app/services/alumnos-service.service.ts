@@ -15,4 +15,10 @@ export class AlumnosServiceService {
   getAlumnos(): Observable<any> {
     return this.httpClient.get<any>(`${this.baseUrl}findAll`);
   }
+
+  deleteAlumno(idAlumno: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}delete`, {
+      cve: idAlumno,
+    });
+  }
 }

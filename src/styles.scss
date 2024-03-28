@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  background: rgb(55, 50, 136);
+  background: linear-gradient(
+    333deg,
+    rgba(55, 50, 136, 1) 0%,
+    rgba(29, 29, 54, 1) 52%,
+    rgba(85, 106, 111, 1) 91%
+  );
+}
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+mat-dialog-container {
+  background-color: #252e3b !important;
+}
