@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Alumno } from 'src/app/model/Alumno';
 import { AlumnosServiceService } from 'src/app/services/alumnos-service.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
 export class HomeComponent implements OnInit {
   constructor(
     private alumnoService: AlumnosServiceService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {} // Asignación a una propiedad de la clase
 
   datasource!: MatTableDataSource<Alumno>;
@@ -50,6 +52,12 @@ export class HomeComponent implements OnInit {
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear().toString().slice(0);
     return `${day}/${month}/${year}`;
+  }
+
+  routeComponent(ruta: string) {
+    console.log(ruta);
+
+    this.router.navigate(['/new']);
   }
 
   //funcion para borrar un alumno pero antes mostrar confirmacion

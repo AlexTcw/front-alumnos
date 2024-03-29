@@ -1,5 +1,5 @@
 export interface Alumno {
-  cveAlumno: number;
+  cveAlumno?: number;
   nombre: string;
   apellido: string;
   fechaNacimiento: string;
@@ -7,5 +7,5 @@ export interface Alumno {
   correoElectronico: string;
   telefono: string;
   carrera: string;
-  cursos: [];
+  cursos: string[];
 }

@@ -1,0 +1,63 @@
+<main>
+    <header id="header-nalumno">
+        <h1>Añadir nuevo alumno</h1>
+        <button id="comeback"><mat-icon>undo</mat-icon></button>
+    </header>
+    <form #alumnoForm="ngForm">
+        <article class="nombres">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre(s)</mat-label>
+                <input matInput placeholder="Nombre del Alumno" type="text" [(ngModel)]="nombre" name="nombre"
+                    id="nombre">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Apellido(s)</mat-label>
+                <input matInput placeholder="Apellido del Alumno" type="text" [(ngModel)]="apellido" name="apellido"
+                    id="apellido">
+            </mat-form-field>
+        </article>
+        <br>
+        <article class="datosGenerales">
+            <mat-form-field>
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" id="direccion">
+                <mat-label>Direccion</mat-label>
+                <input matInput placeholder="Direccion del Alumno" type="text" [(ngModel)]="direccion" name="direccion">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>e-mail</mat-label>
+                <input matInput placeholder="alumno@alumno.edu" type="email" [(ngModel)]="correoElectronico"
+                    name="correoElectronico">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>teléfono</mat-label>
+                <input matInput placeholder="+557224191211" type="tel" [(ngModel)]="telefono" name="telefono">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Carrera</mat-label>
+                <mat-select [(ngModel)]="carrera" name="carrea">
+                    <mat-option *ngFor=" let carrera of carreras"
+                        [value]="carrera.value">{{carrera.viewValue}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </article>
+
+        <article class="cursos">
+            <div *ngFor="let curso of cursos; let i = index" class="curso-card">
+                {{ curso }} <i (click)="eliminarCurso(i)">x</i>
+            </div>
+            <mat-form-field>
+                <mat-label>Cursos del estudiante</mat-label>
+                <input matInput [formControl]="cursoControl" (keyup.enter)="agregarCurso()">
+            </mat-form-field>
+            <button id="addCursoButton" (click)="agregarCurso()"><mat-icon>note_add</mat-icon></button>
+        </article>
+    </form>
+    <button (click)="saveAlumno()">Guardar <mat-icon>save</mat-icon></button>
+</main>

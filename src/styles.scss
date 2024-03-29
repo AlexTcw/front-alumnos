@@ -23,3 +23,15 @@ body {
 mat-dialog-container {
   background-color: #252e3b !important;
 }
+
+mat-form-field {
+  margin-left: 4%;
+  width: 46%;
+  color: #fff;
+}
+
+.cursos {
+  mat-form-field {
+    width: 80%;
+  }
+}

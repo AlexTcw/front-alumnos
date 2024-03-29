@@ -21,4 +21,17 @@ export class AlumnosServiceService {
       cve: idAlumno,
     });
   }
+
+  saveNewAlumno(alumno: Alumno): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseUrl}createOrUpdate`, {
+      nombre: alumno.nombre,
+      apellido: alumno.apellido,
+      fechaNacimiento: alumno.fechaNacimiento,
+      direccion: alumno.direccion,
+      correoElectronico: alumno.correoElectronico,
+      telefono: alumno.telefono,
+      carrera: alumno.carrera,
+      cursos: alumno.cursos,
+    });
+  }
 }
