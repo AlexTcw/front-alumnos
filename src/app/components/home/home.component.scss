@@ -9,11 +9,15 @@ main {
   margin: 0 auto; /* Center content horizontally */
 }
 
+#tableContainer {
+  overflow-y: auto;
+  max-height: 70%;
+}
+
 /* Tabla */
 table {
   border-collapse: separate;
   border-spacing: 0;
-  overflow: hidden; /* Oculta los bordes superpuestos */
   background: none;
 }
 
@@ -29,15 +33,29 @@ table {
   display: flex;
   flex-direction: row;
   justify-content: space-between; /* Alinea los elementos a los extremos */
+  align-items: center;
 
   #buttonContainer {
     padding: 20px;
   }
 
   #tittleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     h1 {
       font-size: 30px;
       color: #fff;
+    }
+
+    #personicon {
+      padding-right: 80px;
+
+      mat-icon {
+        font-size: 60px;
+        color: #fff;
+      }
     }
   }
 }
@@ -83,7 +101,8 @@ tr:last-child td:last-child {
 #deleteAlumno,
 #editAlumno,
 #addAlumno,
-#editCurso {
+#returnAlumnoButton,
+#saveAlumnoButton {
   padding: 5px;
   border-radius: 10px;
   border: none;
@@ -100,8 +119,18 @@ tr:last-child td:last-child {
 
 #addAlumno {
   background-color: #5fc47a;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  mat-icon {
+    margin-left: 15px;
+  }
 }
 
-#editCurso {
+#returnAlumnoButton {
   background-color: #c1822f;
+}
+#saveAlumnoButton {
+  background-color: #5fc47a;
 }

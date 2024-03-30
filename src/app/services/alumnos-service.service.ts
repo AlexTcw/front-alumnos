@@ -8,22 +8,47 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AlumnosServiceService {
-  private baseUrl: string = 'http://192.168.1.77:8082/escuela/alumno/';
+  private baseAlumnoUrl: string = 'http://192.168.1.77:8082/escuela/alumno/';
+  private baseCarreaUrl: string = 'http://192.168.1.77:8082/escuela/carrera/';
 
   constructor(private httpClient: HttpClient) {}
 
   getAlumnos(): Observable<any> {
-    return this.httpClient.get<any>(`${this.baseUrl}findAll`);
+    return this.httpClient.get<any>(`${this.baseAlumnoUrl}findAll`);
   }
 
   deleteAlumno(idAlumno: number): Observable<any> {
-    return this.httpClient.post<any>(`${this.baseUrl}delete`, {
+    return this.httpClient.post<any>(`${this.baseAlumnoUrl}delete`, {
       cve: idAlumno,
     });
   }
 
   saveNewAlumno(alumno: Alumno): Observable<any> {
-    return this.httpClient.post<any>(`${this.baseUrl}createOrUpdate`, {
+    return this.httpClient.post<any>(`${this.baseAlumnoUrl}createOrUpdate`, {
+      nombre: alumno.nombre,
+      apellido: alumno.apellido,
+      fechaNacimiento: alumno.fechaNacimiento,
+      direccion: alumno.direccion,
+      correoElectronico: alumno.correoElectronico,
+      telefono: alumno.telefono,
+      carrera: alumno.carrera,
+      cursos: alumno.cursos,
+    });
+  }
+
+  findAllNamesCareras(): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseCarreaUrl}getAllCarrerasNames`);
+  }
+
+  findAlumnoByID(idAlumno: number): Observable<any> {
+    return this.httpClient.post(`${this.baseAlumnoUrl}getAlumno`, {
+      cve: idAlumno,
+    });
+  }
+
+  editAlumno(alumno: Alumno): Observable<any> {
+    return this.httpClient.post<any>(`${this.baseAlumnoUrl}createOrUpdate`, {
+      cveAlumno: alumno.cveAlumno,
       nombre: alumno.nombre,
       apellido: alumno.apellido,
       fechaNacimiento: alumno.fechaNacimiento,

@@ -5,6 +5,8 @@ import { Alumno } from 'src/app/model/Alumno';
 import { AlumnosServiceService } from 'src/app/services/alumnos-service.service';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
+import { NewAlumnoComponent } from '../new-alumno/new-alumno.component';
+import { EditAlumnoComponent } from '../edit-alumno/edit-alumno.component';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,7 @@ export class HomeComponent implements OnInit {
   ) {} // Asignación a una propiedad de la clase
 
   datasource!: MatTableDataSource<Alumno>;
+  carreras: string[] = [];
   displayedColumns: string[] = [
     'nombre',
     'direccion',
@@ -30,18 +33,18 @@ export class HomeComponent implements OnInit {
     'acciones',
   ];
 
-  isdeleting: boolean = false;
-
   ngOnInit(): void {
     this.alumnoService.getAlumnos().subscribe((data) => {
-      console.log(data);
-
+      //console.log(data);
       data.forEach((alumno: Alumno) => {
         alumno.fechaNacimiento = this.formatDate(alumno.fechaNacimiento);
       });
-
-      console.log(data);
+      //console.log(data);
       this.datasource = new MatTableDataSource<Alumno>(data);
+    });
+
+    this.alumnoService.findAllNamesCareras().subscribe((data) => {
+      this.carreras = data;
     });
   }
 
@@ -54,16 +57,10 @@ export class HomeComponent implements OnInit {
     return `${day}/${month}/${year}`;
   }
 
-  routeComponent(ruta: string) {
-    console.log(ruta);
-
-    this.router.navigate(['/new']);
-  }
-
   //funcion para borrar un alumno pero antes mostrar confirmacion
   openConfirmationDialog(idAlumno: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      width: '250px',
+      width: '30%px',
       data: '¿Estás seguro de que quieres eliminar este alumno?',
     });
 
@@ -74,6 +71,30 @@ export class HomeComponent implements OnInit {
           this.ngOnInit();
         });
       }
+    });
+  }
+
+  openNewAlumnoDialog(): void {
+    const dialogRef = this.dialog.open(NewAlumnoComponent, {
+      width: '60%px',
+      data: '',
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      //window.location.reload();
+      this.ngOnInit();
+    });
+  }
+
+  openEditAlumnoDialog(cveAlumno: number): void {
+    const dialogRef = this.dialog.open(EditAlumnoComponent, {
+      width: '60%',
+      data: { idAlumno: cveAlumno }, // Pasa el parámetro idAlumno dentro de la opción data
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      //window.location.reload();
+      this.ngOnInit();
     });
   }
 }

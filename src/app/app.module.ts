@@ -20,6 +20,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { SuccessComponent } from './components/success/success.component';
+import { EditAlumnoComponent } from './components/edit-alumno/edit-alumno.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     ConfirmationDialogComponent,
     NewAlumnoComponent,
+    ErrorDialogComponent,
+    SuccessComponent,
+    EditAlumnoComponent,
   ],
   imports: [
     BrowserModule,

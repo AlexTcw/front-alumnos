@@ -1,11 +1,11 @@
 main {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   position: absolute;
   top: 2%;
   bottom: 2%;
-  right: 20%;
-  left: 20%;
 
   header {
     border-top-left-radius: 10px;

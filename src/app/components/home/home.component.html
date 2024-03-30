@@ -1,78 +1,81 @@
 <main>
-    <article id="encabezado">
+    <article id="encabezado" style="width: 100%;">
         <div id="tittleContainer">
+            <i id="personicon"><mat-icon>people</mat-icon></i>
             <h1>Alumnos Inscritos</h1>
         </div>
         <div id="buttonContainter">
-            <button mat-fab color="primary" aria-label="add button" id="editCurso">
-                <mat-icon>class</mat-icon>
+            <button mat-fab color="primary" aria-label="add button" id="addAlumno" (click)="openNewAlumnoDialog()">
+                Añadir nuevo alumno <mat-icon>person_add</mat-icon>
             </button>
-            <button mat-fab color="primary" aria-label="add button" id="addAlumno" (click)="routeComponent('new')">
-                <mat-icon>person_add</mat-icon>
-            </button>
-
-
         </div>
     </article>
-    <article id="confirm-dialog">
 
+    <article id="tableContainer">
+        <table mat-table [dataSource]="datasource" style="width: 100%;">
+            <!-- Columnas -->
+            <ng-container matColumnDef="nombre" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Nombre</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.nombre }}
+                    {{alumno.apellido}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="direccion" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Direccion</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.direccion }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="correoElectronico" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">e-mail</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{
+                    alumno.correoElectronico
+                    }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="telefono" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Teléfono</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.telefono}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="carrera" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Carrera</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.carrera }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cursos" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Cursos</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.cursos }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fechaNacimiento" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Cumpleaños</th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{
+                    alumno.fechaNacimiento }}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones" class="colum">
+                <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px; width: 15%;">Acciones
+                </th>
+                <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">
+                    <button mat-fab color="primary" aria-label="delete button" id="deleteAlumno"
+                        (click)="openConfirmationDialog(alumno.cveAlumno)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    <button mat-fab color="primary" aria-label="delete button" id="editAlumno"
+                        (click)="openEditAlumnoDialog(alumno.cveAlumno)">
+                        <mat-icon> border_color</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Definición de las columnas -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+            <tr mat-row *matRowDef="let alumno; columns: displayedColumns;"></tr>
+        </table>
     </article>
-    <table mat-table [dataSource]="datasource">
-        <!-- Columnas -->
-        <ng-container matColumnDef="nombre" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Nombre</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.nombre }}
-                {{alumno.apellido}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="direccion" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Direccion</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.direccion }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="correoElectronico" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">e-mail</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.correoElectronico
-                }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="telefono" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Teléfono</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.telefono}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="carrera" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Carrera</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.carrera }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="cursos" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Cursos</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.cursos }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="fechaNacimiento" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Cumpleaños</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">{{ alumno.fechaNacimiento }}
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="acciones" class="colum">
-            <th mat-header-cell *matHeaderCellDef class="colum" style="padding-left: 15px;">Acciones</th>
-            <td mat-cell *matCellDef="let alumno" class="colum" style="padding-left: 15px;">
-                <button mat-fab color="primary" aria-label="delete button" id="deleteAlumno"
-                    (click)="openConfirmationDialog(alumno.cveAlumno)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-fab color="primary" aria-label="delete button" id="editAlumno">
-                    <mat-icon> border_color</mat-icon>
-                </button>
-            </td>
-        </ng-container>
-
-        <!-- Definición de las columnas -->
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let alumno; columns: displayedColumns;"></tr>
-    </table>
 </main>

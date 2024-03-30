@@ -1,62 +1,65 @@
 <main>
     <header id="header-nalumno">
         <div id="texHeaderContainer">
-            <i id="personAdd"><mat-icon>person_add</mat-icon></i>
-            <h1>Añadir nuevo alumno</h1>
+            <i id="personAdd"><mat-icon>edit_location</mat-icon></i>
+            <h1>Editar alumno</h1>
         </div>
         <div id="buttonscontainer">
             <button id="saveall" (click)="saveAlumno()"><mat-icon>save</mat-icon></button>
         </div>
     </header>
-    <form #alumnoForm="ngForm">
+    <form #alumnoForm="ngForm" style="padding-top: 2%;">
         <article class="nombres">
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre(s)</mat-label>
-                <input matInput placeholder="Nombre del Alumno" type="text" [(ngModel)]="nombre" name="nombre"
+                <input matInput placeholder="Nombre del Alumno" type="text" [(ngModel)]="alumno.nombre" name="nombre"
                     id="nombre" autocomplete="off" required>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>Apellido(s)</mat-label>
-                <input matInput placeholder="Apellido del Alumno" type="text" [(ngModel)]="apellido" name="apellido"
-                    id="apellido" required>
+                <input matInput placeholder="Apellido del Alumno" type="text" [(ngModel)]="alumno.apellido"
+                    name="apellido" id="apellido" required>
             </mat-form-field>
         </article>
-        <br>
         <article class="datosGenerales">
             <div class="fechaNacimientoContainer">
                 <mat-form-field id="fechaNacimientofield">
                     <mat-label>Fecha de nacimiento</mat-label>
                     <mat-hint>MM/DD/YYYY</mat-hint>
-                    <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)" required>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="fechaNacimiento"
+                        (dateChange)="onDateChange($event)" required name="fachaNacimiento">
                 </mat-form-field>
                 <div id="calendarIcon">
                     <mat-datepicker-toggle matIconSuffix [for]="picker" style="color: #fff;"></mat-datepicker-toggle>
                     <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
                 </div>
             </div>
+
             <br>
             <mat-form-field class="example-full-width" id="direccion">
                 <mat-label>Direccion</mat-label>
-                <input matInput placeholder="Direccion del Alumno" type="text" [(ngModel)]="direccion" name="direccion"
-                    required>
+                <input matInput placeholder="Direccion del Alumno" type="text" [(ngModel)]="alumno.direccion"
+                    name="direccion" required>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>e-mail</mat-label>
-                <input matInput placeholder="alumno@alumno.edu" type="email" [(ngModel)]="correoElectronico"
+                <input matInput placeholder="alumno@alumno.edu" type="email" [(ngModel)]="alumno.correoElectronico"
                     name="correoElectronico" required>
             </mat-form-field>
             <mat-form-field class="example-full-width">
                 <mat-label>teléfono</mat-label>
-                <input matInput placeholder="+557224191211" type="tel" [(ngModel)]="telefono" name="telefono" required>
+                <input matInput placeholder="+557224191211" type="tel" [(ngModel)]="alumno.telefono" name="telefono"
+                    required>
             </mat-form-field>
             <mat-form-field class="example">
                 <mat-label>Carrera</mat-label>
-                <mat-select [(ngModel)]="carrera" name="carrera" required>
-                    <mat-option *ngFor="let carrera of carreras" [value]="carrera">{{carrera}}</mat-option>
+                <mat-select [(ngModel)]="alumno.carrera" name="carrera" required>
+                    <mat-option *ngFor="let carrera of carreras" [value]="alumno.carrera">{{ carrera }}</mat-option>
                 </mat-select>
             </mat-form-field>
-        </article>
 
+        </article>
+        <br>
         <article class="cursos">
             <div *ngFor="let curso of cursos; let i = index" class="curso-card">
                 <i id="deletepicker" (click)="eliminarCurso(i)"><mat-icon>delete_sweep</mat-icon></i> {{ curso }}
