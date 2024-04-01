@@ -14,6 +14,7 @@ body {
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
 }
 
 /* Importing Bootstrap SCSS file. */
@@ -34,4 +35,13 @@ mat-form-field {
   mat-form-field {
     width: 80%;
   }
+}
+
+#fechaNacimientofield {
+  width: 100%;
+}
+
+#tableContainer {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

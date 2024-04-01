@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AlumnosServiceService {
-  private baseAlumnoUrl: string = 'http://192.168.1.77:8082/escuela/alumno/';
-  private baseCarreaUrl: string = 'http://192.168.1.77:8082/escuela/carrera/';
+  private baseAlumnoUrl: string = 'http://localhost:8082/escuela/alumno/';
+  private baseCarreaUrl: string = 'http://localhost:8082/escuela/carrera/';
 
   constructor(private httpClient: HttpClient) {}
 
